@@ -4,7 +4,6 @@ from .locators import ProductPageLocators
 from .locators import BasePageLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.common.by import By
 import time
 
 
@@ -35,9 +34,9 @@ class ProductPage(BasePage):
         if "/login" in login_page_link:
             assert True
         else:
+            self.allure_report()
             assert False, \
                 f"{login_page_link} No 'Login' in the page link"
-        time.sleep(10)
 
     def return_product_price(self):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
@@ -60,8 +59,19 @@ class ProductPage(BasePage):
         WebDriverWait(self.browser, 5).until(ec.alert_is_present())
         self.solve_quiz_and_get_code()
         price2 = self.browser.find_elements(*ProductPageLocators.MESSAGES)
-        assert price2[5].text == price, \
+        if price2[5].text == price:
+            assert True
+        else:
+            self.allure_report()
+            assert False, \
             f"Price is not {price}"
         product_name2 = self.browser.find_elements(*ProductPageLocators.MESSAGES)
-        assert product_name2[3].text == product_name, \
+        if product_name2[3].text == product_name:
+            assert True
+        else:
+            self.allure_report()
+            assert False, \
             f"Product name is not {product_name}"
+
+
+

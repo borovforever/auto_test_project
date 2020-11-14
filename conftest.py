@@ -1,6 +1,10 @@
 import pytest
 
+from allure_commons.types import AttachmentType
+
 from selenium import webdriver
+
+import allure
 
 from selenium.webdriver.chrome.options import Options
 
@@ -30,3 +34,9 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
+
+
+@pytest.fixture(scope="function")
+def allure_report(self):
+    allure.attach(self.browser.get_screenshot_as_png(), name="testEmbedScreen",
+                  attachment_type=AttachmentType.PNG)

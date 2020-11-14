@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from .locators import BasePageLocators
+import allure
+from allure_commons.types import AttachmentType
 import time
 import math
 
@@ -66,3 +68,7 @@ class BasePage():
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def allure_report(self):
+        allure.attach(self.browser.get_screenshot_as_png(), name="testEmbedScreen",
+                      attachment_type=AttachmentType.PNG)

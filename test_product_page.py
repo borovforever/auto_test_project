@@ -63,3 +63,4 @@ def test_guest_can_add_product_to_basket_promo(browser, promo_offer):
                        link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
     page.open()  # открываем страницу
     page.guest_can_add_product_to_basket()
+

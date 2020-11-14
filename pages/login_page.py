@@ -14,6 +14,7 @@ class LoginPage(BasePage):
         if "/login" in login_page_link:
             assert True
         else:
+            self.allure_report()
             assert False, \
                 f"{login_page_link} No 'Login' in the page link"
 
