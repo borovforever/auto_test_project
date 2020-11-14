@@ -14,3 +14,10 @@ class LoginPageLocators():
     EMAIL_REG = (By.XPATH, "//input[@name='registration-email']")
     PASSWORD_REG = (By.XPATH, "//button[@name='registration_submit']")
     REGISTER_BTN = (By.XPATH, "//button[@name='registration_submit']")
+
+
+class ProductPageLocators():
+    ADD_TO_BASKET = "//button[@value='Add to basket']"
+    PRODUCT_PRICE = "//p[@class='price_color']"
+    PRODUCT_NAME = "//h1"
+
