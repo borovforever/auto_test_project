@@ -1,8 +1,51 @@
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 import pytest
 import time
+
+
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(autouse=True)
+    def setup(self, browser):
+        self.browser = browser
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
+        page = LoginPage(browser,
+                         link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+        page.open()  # открываем страницу
+        page.register_new_user()
+        page.should_be_authorized_user()
+        page.user_cant_see_success_message()
+
+    @pytest.mark.need_review
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
+        page = LoginPage(browser,
+                         link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+        page.open()  # открываем страницу
+        page.register_new_user()
+        page.should_be_authorized_user()
+        page.user_can_add_product_to_basket()
+
+
+@pytest.mark.need_review
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
+    page = BasketPage(browser, link)
+    page.open()
+    page.guest_cant_see_product_in_basket_opened_from_product_page()
+
+
+@pytest.mark.need_review
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
+    page = ProductPage(browser,
+                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+    page.open()  # открываем страницу
+    page.guest_can_go_to_login_page_from_product_page()
 
 
 def test_guest_should_see_login_link_on_product_page(browser):
@@ -10,14 +53,6 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.guest_should_see_login_link_on_product_page()
-
-
-def test_guest_can_go_to_login_page_from_product_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
-    page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-    page.open()  # открываем страницу
-    page.guest_can_go_to_login_page_from_product_page()
 
 
 @pytest.mark.xfail
@@ -46,6 +81,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.message_disappeared_after_adding_product_to_basket()
 
 
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
     page = ProductPage(browser,
@@ -63,4 +99,3 @@ def test_guest_can_add_product_to_basket_promo(browser, promo_offer):
                        link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
     page.open()  # открываем страницу
     page.guest_can_add_product_to_basket()
-

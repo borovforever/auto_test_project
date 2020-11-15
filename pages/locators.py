@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    USER_ICON = (By.XPATH, "//i[@class='icon-user']")
 
 
 class MainPageLocators():
@@ -11,20 +12,21 @@ class MainPageLocators():
 
 
 class LoginPageLocators():
-    LOGIN_FORM = (By.XPATH, "//form[@id='login_form']")
-    LOGIN_PAGE = (By.XPATH, "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/")
     EMAIL_LOGIN = (By.XPATH, "//input[@name='login-username']")
     PASSWORD_LOGIN = (By.XPATH, "//input[@id='id_login-password']")
     LOG_IN_BTN = (By.XPATH, "//button[@name='login_submit']")
     EMAIL_REG = (By.XPATH, "//input[@name='registration-email']")
-    PASSWORD_REG = (By.XPATH, "//button[@name='registration_submit']")
+    PASSWORD_REG = (By.XPATH, "//input[@name='registration-password1']")
+    CONFIRM_PASSWORD = (By.XPATH, "//input[@name='registration-password2']")
     REGISTER_BTN = (By.XPATH, "//button[@name='registration_submit']")
 
 
 class ProductPageLocators():
     ADD_TO_BASKET = (By.XPATH, "//button[@value='Add to basket']")
+    ADD_TO_BASKET_USER = (By.XPATH, "//button[@type='submit']")
     PRODUCT_PRICE = (By.XPATH, "//p[@class='price_color']")
     PRODUCT_NAME = (By.XPATH, "//h1")
+    PRODUCT_NAME_USER = (By.XPATH, "//h3//a")
     SUCCESS = (By.XPATH, "//strong[contains(text(),'Deferred benefit offer')]")
     MESSAGES = (By.XPATH, "//div//strong")
 

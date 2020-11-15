@@ -1,5 +1,4 @@
 from .base_page import BasePage
-from .locators import LoginPageLocators
 from .locators import ProductPageLocators
 from .locators import BasePageLocators
 from selenium.webdriver.support.ui import WebDriverWait

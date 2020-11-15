@@ -1,4 +1,5 @@
 import time
+import pytest
 from .base_page import BasePage
 from .locators import LoginPageLocators
 from .locators import ProductPageLocators
@@ -7,6 +8,9 @@ from .locators import BasketPageLocators
 
 
 class BasketPage(BasePage):
+    @pytest.fixture(autouse=True)
+    def setup(self, browser):
+        self.browser = browser
 
     def guest_cant_see_product_in_basket_opened_from_main_page(self):
         self.browser.find_element(*BasketPageLocators.BASKET).click()
