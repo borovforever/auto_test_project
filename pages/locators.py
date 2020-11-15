@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
@@ -27,3 +28,7 @@ class ProductPageLocators():
     SUCCESS = (By.XPATH, "//strong[contains(text(),'Deferred benefit offer')]")
     MESSAGES = (By.XPATH, "//div//strong")
 
+
+class BasketPageLocators():
+    BASKET = (By.XPATH, "//a[@class='btn btn-default']")
+    BASKET_FILL = (By.XPATH, "//div[@id='content_inner']")

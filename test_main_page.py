@@ -1,5 +1,6 @@
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 import time
 
 
@@ -21,5 +22,17 @@ def test_guest_should_see_login_reg_form(browser):
     page.should_be_login_url()
     page.should_be_login_form()
     page.should_be_register_form()
+
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/"
+    page = BasketPage(browser, link)
+    page.open()
+    page.guest_cant_see_product_in_basket_opened_from_main_page()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
+    page = BasketPage(browser, link)
+    page.open()
+    page.guest_cant_see_product_in_basket_opened_from_product_page()
 
 
